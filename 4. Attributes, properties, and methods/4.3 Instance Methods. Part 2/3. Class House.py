@@ -18,6 +18,12 @@ class House:
         self.color = color
         self.rooms = rooms
 
+    def paint(self, new_color):
+        self.color = new_color
+
+    def add_rooms(self, n):
+        self.rooms += n
+
 
 # тест 1
 house = House("white", 4)
