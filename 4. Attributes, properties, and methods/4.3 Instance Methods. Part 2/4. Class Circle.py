@@ -9,10 +9,15 @@
     area — площадь круга
 """
 
-
 # Код:
+from math import pi
+
+
 class Circle:
-    pass
+    def __init__(self, radius):
+        self.radius = radius
+        self.diameter = self.radius * 2
+        self.area = pi * self.radius**2
 
 
 # тест 1
