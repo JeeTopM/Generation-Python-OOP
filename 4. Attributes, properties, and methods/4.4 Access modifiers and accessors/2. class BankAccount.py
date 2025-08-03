@@ -10,21 +10,21 @@
 
 class BankAccount:
     def __init__(self, balance=0):
-        self._balane = balance
+        self._balance = balance
 
     def get_balance(self):
         """— метод, возвращающий актуальный баланс счета"""
-        pass
+        return self._balance
 
-    def deposit():
+    def deposit(self, amount):
         """— метод, принимающий в качестве аргумента число amount и увеличивающий баланс счета на amount"""
-        pass
+        self._balance += amount
 
-    def withdraw():
+    def withdraw(self, amount):
         """— метод, принимающий в качестве аргумента число amount и уменьшающий баланс счета на amount.
         Если amount превышает количество средств на балансе счета, должно быть возбуждено исключение ValueError с сообщением:
         На счете недостаточно средств"""
-        pass
+        self._balance -= amount
 
     def transfer():
         """— метод, принимающий в качестве аргументов банковский счет account и число amount. Метод должен уменьшать баланс текущего счета на amount и увеличивать баланс счета account на amount. Если amount превышает количество средств на балансе текущего счета, должно быть возбуждено исключение ValueError с сообщением:
