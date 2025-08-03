@@ -24,10 +24,16 @@ class BankAccount:
         """— метод, принимающий в качестве аргумента число amount и уменьшающий баланс счета на amount.
         Если amount превышает количество средств на балансе счета, должно быть возбуждено исключение ValueError с сообщением:
         На счете недостаточно средств"""
-        self._balance -= amount
+        if self._balance >= amount:
+            self._balance -= amount
+        else:
+            raise ValueError("На счете недостаточно средств")
 
-    def transfer():
-        """— метод, принимающий в качестве аргументов банковский счет account и число amount. Метод должен уменьшать баланс текущего счета на amount и увеличивать баланс счета account на amount. Если amount превышает количество средств на балансе текущего счета, должно быть возбуждено исключение ValueError с сообщением:
+    def transfer(self, amount):
+        """— метод, принимающий в качестве аргументов банковский счет account и число amount.
+        Метод должен уменьшать баланс текущего счета на amount и увеличивать баланс счета account на amount.
+        Если amount превышает количество средств на балансе текущего счета,
+        должно быть возбуждено исключение ValueError с сообщением:
         На счете недостаточно средств"""
         pass
 
@@ -40,3 +46,12 @@ account.deposit(100)
 print(account.get_balance())  # 100
 account.withdraw(50)
 print(account.get_balance())  # 50
+
+# 2
+account = BankAccount(100)
+
+try:
+    account.withdraw(150)
+except ValueError as e:
+    print(e)
+# На счете недостаточно средств
