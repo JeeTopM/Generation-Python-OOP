@@ -28,20 +28,20 @@ class Rectangle:
     perimeter = property(get_perimeter)
     area = property(get_area)
 
+
 # 1
 rectangle = Rectangle(4, 5)
-print(rectangle.length) # 4
-print(rectangle.width) # 5
-print(rectangle.perimeter) # 18
-print(rectangle.area) # 20
+print(rectangle.length)  # 4
+print(rectangle.width)  # 5
+print(rectangle.perimeter)  # 18
+print(rectangle.area)  # 20
 
 print()
 # 2
 rectangle = Rectangle(4, 5)
 rectangle.length = 2
 rectangle.width = 3
-print(rectangle.length) # 2
-print(rectangle.width) # 3
-print(rectangle.perimeter) # 10
-print(rectangle.area)# 6
-
+print(rectangle.length)  # 2
+print(rectangle.width)  # 3
+print(rectangle.perimeter)  # 10
+print(rectangle.area)  # 6
