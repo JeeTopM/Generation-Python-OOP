@@ -9,17 +9,50 @@
 Перепишите метод process() класса Processor с использованием декоратора @singledispatchmethod,
     чтобы он выполнял ту же задачу.
 '''
+from functools import singledispatchmethod
 
 
 class Processor:
+    @singledispatchmethod
     @staticmethod
     def process(data):
-        if isinstance(data, (int, float)):
-            return data * 2
-        elif isinstance(data, str):
-            return data.upper()
-        elif isinstance(data, list):
-            return sorted(data)
-        elif isinstance(data, tuple):
-            return tuple(sorted(data))
         raise TypeError('Аргумент переданного типа не поддерживается')
+
+    @process.register(int | float)
+    @staticmethod
+    def _from_int(arg):
+        return arg * 2
+
+    @process.register(str)
+    @staticmethod
+    def _from_str(arg):
+        return arg.upper()
+
+    @process.register(list)
+    @staticmethod
+    def _from_list(arg):
+        return sorted(arg)
+
+    @process.register(tuple)
+    @staticmethod
+    def _from_tuple(arg):
+        return tuple(sorted(arg))
+
+
+# test 1
+print(Processor.process(10))
+print(Processor.process(5.2))
+print(Processor.process('hello'))
+print(Processor.process((4, 3, 2, 1)))
+print(Processor.process([3, 2, 1]))
+''' 20
+    10.4
+    HELLO
+    (1, 2, 3, 4)
+    [1, 2, 3]'''
+# test 2
+try:
+    Processor.process({1, 2, 3})
+except TypeError as e:
+    print(e)
+'''Аргумент переданного типа не поддерживается'''
