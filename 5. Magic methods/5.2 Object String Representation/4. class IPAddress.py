@@ -13,15 +13,19 @@ IP-адреса представляют собой набор из четыре
 И следующее неформальное строковое представление:
     <IP-адрес в виде четырех целых чисел, разделенных точками>
 '''
+from functools import singledispatchmethod
+
 class IPAddress:
+    @singledispatchmethod
     def __init__(self, ipaddress):
-        if isinstance(ipaddress, str):
-            self.ipaddress = ipaddress
-        elif isinstance(ipaddress, list | tuple):
-            self.ipaddress = '.'.join(map(str, ipaddress))
+        self.ipaddress = ipaddress
+
+    @__init__.register(list | tuple)
+    def _(self, ipaddress):
+        self.ipaddress = '.'.join(map(str, ipaddress))
 
     def __str__(self):
-        return f"{self.ipaddress}"
+        return self.ipaddress
 
     def __repr__(self):
         return f"IPAddress('{self.ipaddress}')"
