@@ -19,7 +19,23 @@ class Book:
         self.year = year
 
     def __str__(self):
-        return f"Book('{title}', '{author}', {year})"
+        return f'{self.title} ({self.author}, {self.year})'
 
-    def __repr__():
-        return f'{title} ({author}, {year})'
+
+    def __repr__(self):
+        return f"Book('{self.title}', '{self.author}', {self.year})"
+
+book = Book('Изучаем Python', 'Марк Лутц', 2021)
+
+print(book)
+print(repr(book))
+# Изучаем Python (Марк Лутц, 2021)
+# Book('Изучаем Python', 'Марк Лутц', 2021)
+
+book = Book('Программируем на Python', 'Майкл Доусон', 2023)
+
+print(str(book))
+print(repr(book))
+# Программируем на Python (Майкл Доусон, 2023)
+# Book('Программируем на Python', 'Майкл Доусон', 2023)
+
