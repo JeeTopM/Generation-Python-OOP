@@ -30,7 +30,6 @@ class IPAddress:
     def __repr__(self):
         return f"IPAddress('{self.ipaddress}')"
 
-
 # 1
 ip = IPAddress('8.8.1.1')
 print(str(ip))  # 8.8.1.1
