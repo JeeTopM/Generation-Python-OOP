@@ -13,18 +13,31 @@ IP-адреса представляют собой набор из четыре
 И следующее неформальное строковое представление:
     <IP-адрес в виде четырех целых чисел, разделенных точками>
 '''
+class IPAddress:
+    def __init__(self, ipaddress):
+        if isinstance(ipaddress, str):
+            self.ipaddress = ipaddress
+        elif isinstance(ipaddress, list | tuple):
+            self.ipaddress = '.'.join(map(str, ipaddress))
+
+    def __str__(self):
+        return f"{self.ipaddress}"
+
+    def __repr__(self):
+        return f"IPAddress('{self.ipaddress}')"
+
 
 # 1
 ip = IPAddress('8.8.1.1')
-print(str(ip)) # 8.8.1.1
-print(repr(ip)) # IPAddress('8.8.1.1')
+print(str(ip))  # 8.8.1.1
+print(repr(ip))  # IPAddress('8.8.1.1')
 
 # 2
 ip = IPAddress([1, 1, 10, 10])
-print(str(ip)) # 1.1.10.10
-print(repr(ip)) # IPAddress('1.1.10.10')
+print(str(ip))  # 1.1.10.10
+print(repr(ip))  # IPAddress('1.1.10.10')
 
 # 3
 ip = IPAddress((1, 1, 11, 11))
-print(str(ip)) # 1.1.11.11
-print(repr(ip)) # IPAddress('1.1.11.11')
+print(str(ip))  # 1.1.11.11
+print(repr(ip))  # IPAddress('1.1.11.11')
