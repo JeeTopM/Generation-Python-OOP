@@ -10,7 +10,16 @@
 И следующее неформальное строковое представление:
     <телефонный номер в формате (ddd) ddd-dddd>
 '''
+class PhoneNumber:
+    def __init__(self, phone_number):
+        self.phone_number = phone_number.replace(' ', '')
 
+    def __str__(self):
+        numb = self.phone_number
+        return f'({numb[0:3]}) {numb[3:6]}-{numb[6:10]}'
+
+    def __repr__(self):
+        return f"PhoneNumber('{self.phone_number}')"
 # 1
 phone = PhoneNumber('9173963385')
 print(str(phone)) # (917) 396-3385
