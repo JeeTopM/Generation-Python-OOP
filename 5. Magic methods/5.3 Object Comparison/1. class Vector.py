@@ -9,9 +9,24 @@
 Также экземпляры класса Vector должны поддерживать операции сравнения с помощью операторов == и!=.
 Два вектора считаются равными, если их координаты по обеим осям совпадают.
 Методы, реализующие операции сравнения, должны уметь сравнивать как два вектора между собой,
-так и вектор с кортежем из двух чисел, представляющих координаты  x и y.
+так и вектор с кортежем из двух чисел, представляющих координаты x и y.
 '''
 
+
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        if isinstance(other, Vector):
+            return self.x == other.x and self.y == other.y
+        elif isinstance(other, tuple) and len(other) == 2:
+            return self.x == other[0] and self.y == other[1]
+        return NotImplemented
+
+    def __repr__(self):
+        return f'Vector({self.x}, {self.y})'
 
 # 1
 a = Vector(1, 2)
