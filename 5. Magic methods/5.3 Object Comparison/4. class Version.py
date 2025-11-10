@@ -21,25 +21,25 @@ from functools import total_ordering
 
 @total_ordering
 class Version:
-    def __init__(self, number):
-        self.number = [int(i) for i in number.split('.')]
-        while len(self.number) < 3:
-            self.number.append(0)
+    def __init__(self, version):
+        self._ver = [int(i) for i in version.split('.')]
+        while len(self._ver) < 3:
+            self._ver.append(0)
 
     def __repr__(self):
-        return f"Version('{".".join([str(i) for i in self.number])}')"
+        return "Version('{}.{}.{}')".format(*self._ver)
 
     def __str__(self):
-        return f'{".".join([str(i) for i in self.number])}'
+        return '{}.{}.{}'.format(*self._ver)
 
     def __eq__(self, other):
         if isinstance(other, Version):
-            return self.number == other.number
+            return self._ver == other._ver
         return NotImplemented
 
     def __lt__(self, other):
         if isinstance(other, Version):
-            return self.number < other.number
+            return self._ver < other._ver
         return NotImplemented
 
 # test 1
