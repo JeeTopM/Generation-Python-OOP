@@ -10,9 +10,19 @@
     результатом унарного + должен являться новый экземпляр класса Money с неотрицательным количеством денег
     результатом унарного - должен являться новый экземпляр класса Money с отрицательным количеством денег
 """
+
 class Money:
     def __init__(self, amount):
         self.amount = amount
+
+    def __repr__(self):
+        return f'{self.amount} руб.'
+
+    def __pos__(self):
+        return Money(abs(self.amount))
+
+    def __neg__(self):
+        return Money(-abs(self.amount))
 
 # test 1
 money = Money(100)
