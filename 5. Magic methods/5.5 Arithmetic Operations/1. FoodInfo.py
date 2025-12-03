@@ -31,7 +31,32 @@ class FoodInfo:
         self.carbohydrates = carbohydrates
 
     def __repr__(self):
-        return 1
+        return f'FoodInfo({self.proteins}, {self.fats}, {self.carbohydrates})'
+
+    def __add__(self, other):
+        if isinstance(other, FoodInfo):
+            return FoodInfo(
+                self.proteins + other.proteins,
+                self.fats + other.fats,
+                self.carbohydrates + other.carbohydrates
+            )
+        return NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return FoodInfo(
+                self.proteins * other, self.fats * other, self.carbohydrates * other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return FoodInfo(self.proteins / other, self.fats / other, self.carbohydrates / other)
+        return NotImplemented
+
+    def __floordiv__(self, other):
+        if isinstance(other, (int, float)):
+            return FoodInfo(self.proteins // other, self.fats // other, self.carbohydrates // other)
+        return NotImplemented
 
 
 
