@@ -24,3 +24,34 @@
         результатом деления нацело должен являться новый экземпляр класса FoodInfo,
             количество белков, жиров и углеводов которого поделены нацело на n
 """
+class FoodInfo:
+    def __init__(self, proteins, fats, carbohydrates):
+        self.proteins = proteins
+        self.fats = fats
+        self.carbohydrates = carbohydrates
+
+    def __repr__(self):
+        return 1
+
+
+
+# test 1
+food1 = FoodInfo(10, 20, 30)
+food2 = FoodInfo(10, 10, 20)
+
+print(food1 + food2)
+print(food1 * 2)
+print(food1 / 2)
+print(food1 // 2)
+# test 1 answer
+'''FoodInfo(20, 30, 50)
+FoodInfo(20, 40, 60)
+FoodInfo(5.0, 10.0, 15.0)
+FoodInfo(5, 10, 15)
+Sample Input 2:
+food1 = FoodInfo(10, 20, 30)'''
+
+try:
+    food2 = (5, 10, 15) + food1
+except TypeError:
+    print('Некорректный тип данных') # Некорректный тип данных
