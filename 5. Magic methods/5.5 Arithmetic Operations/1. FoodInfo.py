@@ -24,6 +24,8 @@
         результатом деления нацело должен являться новый экземпляр класса FoodInfo,
             количество белков, жиров и углеводов которого поделены нацело на n
 """
+
+
 class FoodInfo:
     def __init__(self, proteins, fats, carbohydrates):
         self.proteins = proteins
@@ -35,11 +37,8 @@ class FoodInfo:
 
     def __add__(self, other):
         if isinstance(other, FoodInfo):
-            return FoodInfo(
-                self.proteins + other.proteins,
-                self.fats + other.fats,
-                self.carbohydrates + other.carbohydrates
-            )
+            return FoodInfo(self.proteins + other.proteins, self.fats + other.fats,
+                            self.carbohydrates + other.carbohydrates)
         return NotImplemented
 
     def __mul__(self, other):
@@ -57,7 +56,6 @@ class FoodInfo:
         if isinstance(other, (int, float)):
             return FoodInfo(self.proteins // other, self.fats // other, self.carbohydrates // other)
         return NotImplemented
-
 
 
 # test 1
@@ -79,4 +77,4 @@ food1 = FoodInfo(10, 20, 30)'''
 try:
     food2 = (5, 10, 15) + food1
 except TypeError:
-    print('Некорректный тип данных') # Некорректный тип данных
+    print('Некорректный тип данных')  # Некорректный тип данных
