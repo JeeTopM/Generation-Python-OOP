@@ -24,28 +24,73 @@
 Операция умножения должна быть выполнима независимо от порядка операндов,
     то есть должна быть возможность умножить как строку на число, так и число на строку.
 """
+
+
 class SuperString:
-    def __init__(self, n):
-        self.n = n
+    def __init__(self, string):
+        self.string = string
+
+    def __repr__(self):
+        return f'SuperString({self.string})'
+
+    def __str__(self):
+        return self.string
+
+    def __add__(self, other):
+        if isinstance(other, SuperString):
+            return SuperString(self.string + other.string)
+        return NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            return SuperString(self.string * other)
+        return NotImplemented
+
+    def __rmul__(self, other):
+        if isinstance(other, int):
+            return SuperString(self.string * other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        if isinstance(other, int):
+            n = len(self.string) // other
+            return SuperString(self.string[:n])
+        return NotImplemented
+
+    def __lshift__(self, other):
+        if isinstance(other, int):
+            if (length := len(self.string)) <= other:
+                return SuperString('')
+            else:
+                return SuperString(self.string[0:length - other])
+        return NotImplemented
+
+    def __rshift__(self, other):
+        if isinstance(other, int):
+            if len(self.string) <= other:
+                return SuperString('')
+            else:
+                return SuperString(self.string[other:])
+        return NotImplemented
 
 
-# tests
-# 1
-s1 = SuperString('bee')
-s2 = SuperString('geek')
+if __name__ == '__main__':
+    # 1
+    s1 = SuperString('bee')
+    s2 = SuperString('geek')
 
-print(s1 + s2)  # beegeek
-print(s2 + s1)  # geekbee
+    print(s1 + s2)  # beegeek
+    print(s2 + s1)  # geekbee
 
-# 2
-s = SuperString('beegeek')
+    # 2
+    s = SuperString('beegeek')
 
-print(s * 2)  # beegeekbeegeek
-print(3 * s)  # beegeekbeegeekbeegeek
-print(s / 3)  # be
+    print(s * 2)  # beegeekbeegeek
+    print(3 * s)  # beegeekbeegeekbeegeek
+    print(s / 3)  # be
 
-# 3
-s = SuperString('beegeek')
+    # 3
+    s = SuperString('beegeek')
 
-print(s << 4)  # bee
-print(s >> 3)  # geek
+    print(s << 4)  # bee
+    print(s >> 3)  # geek
