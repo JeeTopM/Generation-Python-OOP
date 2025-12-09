@@ -15,10 +15,30 @@
         количество часов которого увеличено на количество часов правого экземпляра класса Time,
         количество минут — на количество минут правого экземпляра класса Time
 """
-class Time(object):
+class Time:
     def __init__(self, hours, minutes):
-        self.hours = hours
-        self.minutes = minutes
+        total_minutes = hours * 60 + minutes
+        self.hours = (total_minutes // 60) % 24
+        self.minutes = total_minutes % 60
+
+    def __repr__(self):
+        return f"Time({self.hours}, {self.minutes})"
+
+    def __str__(self):
+        return f"{self.hours:02d}:{self.minutes:02d}"
+
+    def __add__(self, other):
+        if isinstance(other, Time):
+            return Time(self.hours + other.hours, self.minutes + other.minutes)
+        return NotImplemented
+
+    def __iadd__(self, other):
+        if isinstance(other, Time):
+            temp = Time(self.hours + other.hours, self.minutes + other.minutes)
+            self.hours = temp.hours
+            self.minutes = temp.minutes
+            return self
+        return NotImplemented
 
 if __name__ == '__main__':
     # 1
@@ -43,3 +63,16 @@ if __name__ == '__main__':
 
     print(time1) # 01:20
     print(time2) # 12:10
+
+    # 4
+    t1 = Time(15, 50)
+    t2 = Time(2, 20)
+    print(t1 + t2)
+
+    t1 += Time(2, 20)
+    print(t1)
+
+    # 5
+    t = Time(40, 80)
+    print(t.__add__([]))
+    print(t.__iadd__('bee'))
