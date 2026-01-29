@@ -6,10 +6,15 @@
     При вызове он должен возвращать значение случайной грани игрального кубика.
     Например, если кубик имеет 6 граней, экземпляр класса Dice должен вернуть случайное число из диапазона [1; 6].
 """
+from random import randint
 
 
 class Dice:
-    pass
+    def __init__(self, sides):
+        self.sides = sides
+
+    def __call__(self):
+        return randint(1, self.sides)
 
 
 if __name__ == '__main__':
