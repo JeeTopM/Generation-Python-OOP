@@ -9,7 +9,11 @@
 
 
 class RaiseTo:
-    pass
+    def __init__(self, degree):
+        self.degree = degree
+
+    def __call__(self, x):
+        return pow(x, self.degree)
 
 
 if __name__ == '__main__':
