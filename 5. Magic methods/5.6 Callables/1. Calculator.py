@@ -10,17 +10,33 @@
     При попытке выполнить деление на ноль должно быть возбуждено исключение ValueError с текстом:
         Деление на ноль невозможно
 """
+
+
 class Calculator:
-    pass
+    def __init__(self):
+        pass
+
+    def __call__(self, a: int | float, b: int | float, operation: str):
+        if operation == '+':
+            return a + b
+        elif operation == '-':
+            return a - b
+        elif operation == '*':
+            return a * b
+        elif operation == '/':
+            if b == 0:
+                raise ValueError('Деление на ноль невозможно')
+            return a / b
+
 
 if __name__ == '__main__':
     # Test 1
     calculator = Calculator()
 
-    print(calculator(10, 5, '+')) # 15
-    print(calculator(10, 5, '-')) # 5
-    print(calculator(10, 5, '*')) # 50
-    print(calculator(10, 5, '/')) # 2.0
+    print(calculator(10, 5, '+'))  # 15
+    print(calculator(10, 5, '-'))  # 5
+    print(calculator(10, 5, '*'))  # 50
+    print(calculator(10, 5, '/'))  # 2.0
 
     # Test 2
     calculator = Calculator()
@@ -28,5 +44,5 @@ if __name__ == '__main__':
     try:
         print(calculator(10, 0, '/'))
     except ValueError as e:
-        print(e) #     Деление на ноль невозможно
-        print(type(e)) # <class 'ValueError'>
+        print(e)  # Деление на ноль невозможно
+        print(type(e))  # <class 'ValueError'>
