@@ -10,7 +10,11 @@
 
 
 class Strip:
-    pass
+    def __init__(self, chars):
+        self.chars = chars
+
+    def __call__(self, string):
+        return string.strip(self.chars)
 
 
 if __name__ == '__main__':
@@ -25,4 +29,4 @@ if __name__ == '__main__':
 
     print(strip('     --++beegeek++--'))  # --++beegeek
     print(strip('-bee...geek-'))  # bee...geek
-    print(strip('-+,.b-e-e-g-e-e-k-+,.'))  # b - e - e - g - e - e - k
+    print(strip('-+,.b-e-e-g-e-e-k-+,.'))  # b-e-e-g-e-e-k
