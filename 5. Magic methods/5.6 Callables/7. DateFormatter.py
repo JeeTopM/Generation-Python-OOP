@@ -21,19 +21,16 @@ class DateFormatter:
     def __init__(self, country_code):
         self.country_code = country_code
 
-    def __call__(self, date):
-        if self.country_code == 'ru':
-            return date.strftime('%d.%m.%Y')  # DD.MM.YYYY
-        elif self.country_code == 'us':
-            return date.strftime('%m-%d-%Y')  # MM-DD-YYYY
-        elif self.country_code == 'ca':
-            return date.strftime('%Y-%m-%d')  # YYYY-MM-DD
-        elif self.country_code == 'br':
-            return date.strftime('%d/%m/%Y')  # DD/MM/YYYY
-        elif self.country_code == 'fr':
-            return date.strftime('%d.%m.%Y')  # DD.MM.YYYY
-        elif self.country_code == 'pt':
-            return date.strftime('%d-%m-%Y')  # DD-MM-YYYY
+    def __call__(self, d):
+        formats = {
+            'ru': '%d.%m.%Y',
+            'us': '%m-%d-%Y',
+            'ca': '%Y-%m-%d',
+            'br': '%d/%m/%Y',
+            'fr': '%d.%m.%Y',
+            'pt': '%d-%m-%Y',
+        }
+        return d.strftime(formats[self.country_code])
 
 
 
