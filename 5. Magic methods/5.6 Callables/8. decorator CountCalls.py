@@ -7,11 +7,14 @@
 Примечание 2. При сдаче решения декоратор @CountCalls вызывать не нужно.
 Примечание 3. Тестовые данные доступны по ссылкам:
 '''
-
-
 class CountCalls:
-    pass
+    def __init__(self, func):
+        self.func = func
+        self.calls = 0
 
+    def __call__(self, *args, **kwargs):
+        self.calls += 1
+        return self.func(*args, **kwargs)
 
 if __name__ == '__main__':
     # test 1
