@@ -8,8 +8,17 @@
 
 Примечание 2. При сдаче решения декоратор @CachedFunction вызывать не нужно.
 """
+
 class CachedFunction:
-    pass
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    def __call__(self, *args):
+        if args not in self.cache:
+            self.cache[args] = self.func(*args)
+        return self.cache[args]
+
 
 if __name__ == '__main__':
     # test 1
@@ -20,7 +29,10 @@ if __name__ == '__main__':
         elif n in (2, 3):
             return 1
         return slow_fibonacci(n - 1) + slow_fibonacci(n - 2)
-    print(slow_fibonacci(100)) # 218922995834555169026
+
+
+    print(slow_fibonacci(100))  # 218922995834555169026
+
 
     # test 2
     @CachedFunction
@@ -30,6 +42,8 @@ if __name__ == '__main__':
         elif n in (2, 3):
             return 1
         return slow_fibonacci(n - 1) + slow_fibonacci(n - 2)
+
+
     slow_fibonacci(5)
     for args, value in sorted(slow_fibonacci.cache.items()):
         print(args, value)
