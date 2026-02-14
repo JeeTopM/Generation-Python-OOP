@@ -20,8 +20,8 @@ class Item:
         if name == 'total':
             return self.price * self.quantity
         elif name == 'name':
-            return self.name.title()
-        return self.__dict__[name]
+            return object.__getattribute__(self, 'name').title()
+        return object.__getattribute__(self, name)
 
 
 if __name__ == '__main__':
