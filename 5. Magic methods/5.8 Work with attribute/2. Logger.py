@@ -11,11 +11,11 @@
 class Logger:
     def __setattr__(self, name, value):
         print(f'Изменение значения атрибута {name} на {value}')
-        self.name = value
+        object.__setattr__(self, name, value)
 
     def __delattr__(self, name):
         print(f'Удаление атрибута {name}')
-        del self.name
+        object.__delattr__(self, name)
 
 
 if __name__ == '__main__':
