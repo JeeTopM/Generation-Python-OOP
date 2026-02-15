@@ -7,7 +7,14 @@
 
 
 class DefaultObject:
-    ...
+    def __init__(self, default=None, **kwargs):
+        self.default = default
+        # self.__dict__.update(kwargs)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __getattr__(self, attr):
+        return self.default
 
 
 if __name__ == '__main__':
