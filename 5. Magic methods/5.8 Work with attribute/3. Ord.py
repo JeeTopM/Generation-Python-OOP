@@ -8,7 +8,8 @@
 
 
 class Ord():
-    ...
+    def __getattr__(self, item):
+        return ord(item)
 
 
 if __name__ == '__main__':
