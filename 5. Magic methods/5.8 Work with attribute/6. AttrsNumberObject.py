@@ -10,8 +10,19 @@
 
 
 class AttrsNumberObject:
-    ...
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            object.__setattr__(self, key, value)
+        self.attrs_num = True
+        object.__setattr__(self, 'attrs_num', len(self.__dict__))
 
+    def __setattr__(self, name, value):
+        object.__setattr__(self, name, value)
+        object.__setattr__(self, 'attrs_num', len(self.__dict__))
+
+    def __delattr__(self, name):
+        object.__delattr__(self, name)
+        object.__setattr__(self, 'attrs_num', len(self.__dict__))
 
 if __name__ == '__main__':
     # 1
