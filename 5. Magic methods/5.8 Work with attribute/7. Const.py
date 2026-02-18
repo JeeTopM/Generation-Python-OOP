@@ -12,8 +12,18 @@
 
 
 class Const:
-    ...
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
 
+    def __setattr__(self, k, v):
+        if hasattr(self, k):
+            raise AttributeError('Изменение значения атрибута невозможно')
+        return super().__setattr__(k, v)
+
+    def __delattr__(self, k):
+        if hasattr(self, k):
+            raise AttributeError('Удаление атрибута невозможно')
 
 if __name__ == '__main__':
     # 1
