@@ -13,17 +13,15 @@
 
 class Const:
     def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
+        self.__dict__.update(kwargs)
 
-    def __setattr__(self, k, v):
-        if hasattr(self, k):
+    def __setattr__(self, key, value):
+        if key in self.__dict__:
             raise AttributeError('Изменение значения атрибута невозможно')
-        object.__setattr__(self, k, v)
+        object.__setattr__(self, key, value)
 
-    def __delattr__(self, k):
-        if hasattr(self, k):
-            raise AttributeError('Удаление атрибута невозможно')
+    def __delattr__(self, item):
+        raise AttributeError('Удаление атрибута невозможно')
 
 if __name__ == '__main__':
     # 1
