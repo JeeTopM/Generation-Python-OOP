@@ -19,7 +19,7 @@ class Const:
     def __setattr__(self, k, v):
         if hasattr(self, k):
             raise AttributeError('Изменение значения атрибута невозможно')
-        return super().__setattr__(k, v)
+        object.__setattr__(self, k, v)
 
     def __delattr__(self, k):
         if hasattr(self, k):
