@@ -16,7 +16,10 @@
 
 
 def limited_hash(left, right, hash_function=hash):
-    ...
+    def inner_hash_function(obj):
+        return left + (hash_function(obj) - left) % (right - left + 1)
+
+    return inner_hash_function
 
 
 if __name__ == '__main__':
