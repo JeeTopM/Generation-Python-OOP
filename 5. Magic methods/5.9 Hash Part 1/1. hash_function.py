@@ -16,7 +16,17 @@
         где temp1 — значение, полученное в первом шаге, temp2 — значение, полученное во втором шаге
 '''
 def hash_function(obj):
-    ...
+    obj = str(obj)
+    middle = len(obj) // 2
+    temp1, temp2 = ord(obj[middle]) * (len(obj) % 2 == 1), 0
+
+    for i in range(middle):
+        temp1 += ord(obj[i]) * ord(obj[-1 - i])
+
+    for i, c in enumerate(obj, 1):
+        temp2 += ord(c) * i * ((-1) ** (i + 1))
+
+    return temp1 * temp2 % 123456791
 
 # tests
 print(hash_function('python'))  # 111998846
